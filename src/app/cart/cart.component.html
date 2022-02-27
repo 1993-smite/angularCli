@@ -1,0 +1,146 @@
+<div class="card bg-secondary bg-gradient bg-opacity-25">
+  <h3 class="text-center"> <label for="card-enabled">Cart</label> </h3>
+  <div class="card-body">
+    <div>
+      <hr/>
+      <form 
+        [formGroup]="checkoutForm" 
+        (ngSubmit)="onSubmit(checkoutForm.value)"
+        novalidate>
+      
+        <div class="mb-3">
+          <div class="form-check form-switch">
+            <input class="form-check-input" 
+              id="card-enabled"
+              type="checkbox" 
+              [value]="checkoutForm.value.status === 1"
+              (change)="setActiveStatus()"
+              checked>
+          </div>
+        </div>
+
+        <br/>
+
+        <div class="mb-3">
+          <label 
+            for="name" 
+            class="form-label">Name</label>
+          <sup>*</sup>
+          <input 
+            id="name"
+            type="text" 
+            class="form-control w-100"
+            formControlName="name"
+            autocomplete="off"
+            [class.is-valid]="!_name?.invalid && (_name?.touched || _name?.dirty)"
+            [class.is-invalid]="_name?.invalid && (_name?.touched || _name?.dirty)"
+            />
+          <div class="text-danger"
+            *ngIf="_name?.invalid && (_name?.touched || _name?.dirty)"
+          >
+            <span *ngIf="_name?.errors?.['required']"
+              >Обязательное поле</span
+            >
+            <span *ngIf="_name?.errors?.['pattern']"
+              >Разрешаются только символы</span
+            >
+          </div>
+        </div>
+    
+        <div class="input-group mb-3">
+          <label 
+            for="dpFromDate" 
+            class="form-label">Date<sup>*</sup></label>
+          <div class="input-group"> 
+            <input #dpFromDate
+              class="form-control" 
+              placeholder="dd.mm.yyyy"
+              name="dp" 
+              formControlName="date"
+              ngbDatepicker #d="ngbDatepicker"
+              autocomplete="off"
+              aria-label="Date" 
+              aria-describedby="basic-addon2"
+              [class.is-valid]="!_date?.invalid && (_date?.touched || _date?.dirty)"
+              [class.is-invalid]="_date?.invalid && (_date?.touched || _date?.dirty)"
+              >
+            <button 
+              class="btn btn-outline-secondary" 
+              type="button" 
+              id="button-addon2"
+              (click)="d.toggle()">Date</button>
+          </div>
+          <div class="text-danger"
+              *ngIf="_date?.invalid && (_date?.touched || _date?.dirty)"
+            >
+              <span *ngIf="_date?.errors?.['required']"
+                >Обязательное поле</span
+              >
+            </div>  
+        </div>
+
+        <div class="mb-3">
+          <label 
+            for="price" 
+            class="form-label">Price</label>
+          <sup>*</sup>
+          <input
+            id="price" 
+            type="number" 
+            class="form-control"
+            formControlName="price"
+            autocomplete="off"
+            [class.is-valid]="!_price?.invalid && (_price?.touched || _price?.dirty)"
+            [class.is-invalid]="_price?.invalid && (_price?.touched || _price?.dirty)"
+            />
+          <div class="text-danger"
+              *ngIf="_price?.invalid && (_price?.touched || _price?.dirty)"
+            >
+              <span *ngIf="_price?.errors?.['required']"
+                >Обязательное поле</span
+              >
+              <span *ngIf="_price?.errors?.['min']"
+                >Значение должно быть больше или равно
+                {{_price?.errors?.['min'].min}}</span
+              >
+              <span
+                *ngIf="_price?.errors?.['pattern']"
+                >Разрешаются только цифры</span
+              >
+            </div>
+        </div>
+
+        <div class="mb-3">
+          <label 
+            for="description" 
+            class="form-label">Description</label>
+          
+          <textarea
+            #description
+            class="form-control"
+            formControlName="description"
+            autocomplete="off"
+            ></textarea>
+        </div>
+      
+        <div class="btn-group" role="group" aria-label="Basic example">
+          <button 
+            type="button" 
+            class="btn btn-primary"
+            (click)="newCart()">New</button>
+          <button 
+            type="button" 
+            class="btn btn-danger"
+            (click)="onClear()">Clear</button>
+          <button 
+            class="btn btn-success" 
+            type="submit"
+            >Save</button>
+        </div>
+        
+      </form>
+    
+    </div>
+
+  </div>
+</div>

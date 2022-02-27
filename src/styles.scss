@@ -1,1 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
+
+.invalid{
+    border-color: #dc3545 !important;
+    border-width: 1px !important;
+}
+
+.card {
+    .card-body{
+        padding-top: 0px;
+    }
+}

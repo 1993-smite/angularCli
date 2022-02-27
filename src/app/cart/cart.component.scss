@@ -1,0 +1,30 @@
+h3{
+    margin-bottom: 0px;
+    label{
+        cursor: pointer;
+    }
+}
+
+.form-switch {
+    .form-check-input{
+        width: 50px;
+        background-color: brown;
+
+        &:checked{
+            background-color: chartreuse;
+        }
+    }
+}
+
+.mb-3{
+    position: relative;
+
+    .form-switch{
+        position: absolute;
+        left: calc(50% - 23px);
+    }
+
+    sup{
+        color: red;
+    }
+}

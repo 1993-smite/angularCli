@@ -1,0 +1,42 @@
+<div class="card bg-secondary bg-gradient bg-opacity-25">
+  <h3 class="text-center">Cart Table</h3>
+  <div class="card-body">
+
+    <div *ngIf="isItems()">
+      <hr/>
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th scope="col">Date</th>
+          <th scope="col">Price</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let item of items; index as i"
+          [ngClass]="{ 'bg-success bg-gradient bg-opacity-25' : item.active}"
+          (keyup)="setActiveIndex(i-1)" 
+          
+          >
+          <th scope="row">{{ i + 1 }}</th>
+          <td 
+            style="cursor: pointer;" 
+            (click)="setActive(item)">
+            {{ item.name }}
+          </td>
+          <td>
+            {{ item.date | DateRu }}
+          </td>
+          <td>{{ item.price | currency }}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div *ngIf="!isItems()">
+      <hr/>
+      <h4 class="text-center">Нет записей</h4>
+    </div>
+
+</div>
